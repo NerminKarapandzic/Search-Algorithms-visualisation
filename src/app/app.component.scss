@@ -1,0 +1,84 @@
+.methods{
+    display: flex;
+    justify-content: center;
+
+    button{
+        border: none;
+        border-radius: 10px;
+        padding: 10px 30px;
+        background-color: lightblue;
+        margin:0px 5px;
+        box-shadow: none;
+        font-weight: 600;
+        cursor: pointer;
+
+        &:disabled{
+            background: lighten(lightblue, 10%);
+            cursor: not-allowed;
+        }
+
+        &:hover{
+            background: darken(lightblue, 10%);
+        }
+
+        &:focus{
+            outline: none;
+        }
+    }
+}
+
+.exectime{
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-top: 20px;
+
+    .time{
+        color: purple;
+    }
+}
+
+#grid{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: center;
+
+    .arrVal{
+        display: flex;
+        margin: 1px;
+        justify-content: center;
+        align-items: center;
+        padding:5px;
+        text-align: center;
+        width: 3px;
+        height: 3px;
+        overflow: hidden;
+        border: 1px solid grey;
+        cursor: pointer;
+
+        &:hover{
+            background-color: lightblue;
+        }
+
+        &.searched{
+            animation-name: pulse;
+            animation-duration: 0.5s;
+            background-color: grey;
+        }
+
+        &.target{
+            background-color: red;
+        }
+
+        &.found{
+            background-color: blue;
+        }
+
+        @keyframes pulse {
+            0% {background-color: red}
+            50% {background-color: grey}
+        }
+    }
+}
