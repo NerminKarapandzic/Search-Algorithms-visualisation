@@ -76,12 +76,10 @@ export class AppComponent implements OnInit {
         
                     else if(mp < this.target) {
                          lp = mp + 1
-                         this.searchedItems.push(this._array[lp])
                          loop();
                         }
                     else { 
                         rp = mp -1
-                        this.searchedItems.push(this._array[lp]) 
                         loop();
                     }
                 }
