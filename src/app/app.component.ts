@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     }
 
     generateArray(){
-        for(let i=0; i<2000; i++){
+        for(let i=0; i<1000; i++){
             this._array.push(i);
         }
     }
@@ -100,29 +100,44 @@ export class AppComponent implements OnInit {
         let step = Math.floor(Math.sqrt(len));
 
         let blockstart = 0, currentstep = step;
-        while(this._array[Math.min(step, len)- 1] < this.target){
-            blockstart = currentstep;
-            currentstep += step;
+        let np = () => {
+            setTimeout(() => {
+                this.searchedItems.push(this._array[blockstart])
+                this.searchedItems.push(this._array[currentstep])
+                if(this._array[currentstep] < this.target){
+                    blockstart = currentstep;
+                    currentstep += step;
+                    ep();
+                }
+            },200)
             
-            if(blockstart >= len){
-                return -1;
-            }
         }
-
         
-        while(this._array[blockstart] < this.target){
-            blockstart ++;
+        let ep = () => {
+            this.searchedItems.push(this._array[blockstart])
+            this.searchedItems.push(this._array[currentstep])
             
-            if(blockstart == Math.min(currentstep, len)){
-                return -1;
+            if(currentstep >= this.target){
+                let i = blockstart;
+                console.log('this is my blockstart:' + i)
+                let loop = () => {
+                    setTimeout(() => {
+                        this.searchedItems.push(this._array[i])
+
+                        if(this._array[i] == this.target){
+                            console.log(this._array[i])
+                            return this.foundItem = this._array[i]
+                        }else{
+                            i++;
+                            loop()
+                        }
+                    },200)
+                }
+                loop();
+            }else{
+                np()
             }
         }
-
-        if(this._array[blockstart] == this.target){
-            return this.foundItem = this._array[blockstart];
-        }else{
-            return -1
-        }
-
+        ep();
     }
 }
