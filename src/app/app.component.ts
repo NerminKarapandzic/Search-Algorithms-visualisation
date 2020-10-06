@@ -12,11 +12,29 @@ export class AppComponent implements OnInit {
     target;
     searchedItems = [];
     foundItem;
+    selected;
 
     ngOnInit(){
         this.generateArray();
     }
 
+    setAlgo(a){
+        this.selected = a;
+    }
+
+    runAlgo(){
+        switch(this.selected){
+            case 'linear':
+                this.linearSearch();
+                break;
+            case 'binary':
+                this.binarySearch();
+                break;
+            case 'jump':
+                this.jumpSearch();
+                break;
+        }
+    }
     generateArray(){
         for(let i=0; i<1000; i++){
             this._array.push(i);
@@ -117,13 +135,11 @@ export class AppComponent implements OnInit {
             
             if(currentstep >= this.target){
                 let i = blockstart;
-                console.log('this is my blockstart:' + i)
                 let loop = () => {
                     setTimeout(() => {
                         this.searchedItems.push(this._array[i])
 
                         if(this._array[i] == this.target){
-                            console.log(this._array[i])
                             return this.foundItem = this._array[i]
                         }else{
                             i++;

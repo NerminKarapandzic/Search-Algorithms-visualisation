@@ -1,30 +1,49 @@
-.methods{
+$primary: lightgrey;
+$accent: grey;
+
+.navbar{
     display: flex;
+    padding: 10px 5em;
+    height: 50px;
     justify-content: center;
-
-    button{
-        border: none;
+    
+    select{
+        background: transparent;
+        border: 1px solid $accent;
         border-radius: 10px;
-        padding: 10px 30px;
-        background-color: lightblue;
-        margin:0px 5px;
-        box-shadow: none;
-        font-weight: 600;
-        cursor: pointer;
-
-        &:disabled{
-            background: lighten(lightblue, 10%);
-            cursor: not-allowed;
-        }
-
-        &:hover{
-            background: darken(lightblue, 10%);
-        }
+        padding:0 2.5em;
+        color: $accent;
 
         &:focus{
             outline: none;
         }
     }
+
+    button{
+        margin: 0 6px;
+        background: transparent;
+        border: 1px solid $accent;
+        border-radius: 10px;
+        padding: 0 2.5em;
+        color: $accent;
+        transition: .3s;
+        cursor: pointer;
+
+        &:hover{
+            background-color: $accent;
+            color: $primary;
+        }
+
+        &:focus{
+            outline: none;
+            background-color: $accent;
+            color: $primary;
+        }
+    }
+}
+
+.notice{
+    text-align: center;
 }
 
 .exectime{

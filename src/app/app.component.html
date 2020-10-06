@@ -1,10 +1,17 @@
 <router-outlet></router-outlet>
 
-<div class="methods">
-    <button (click)="linearSearch()" [disabled]="!target">Run Linear</button>
-    <button (click)="binarySearch()" [disabled]="!target">Run Binary</button>
-    <button (click)="jumpSearch()" [disabled]="!target">Jump Binary</button>
+<div class="navbar">
+    <select (change)="setAlgo($event.target.value)"> 
+        <option value="">Choose an algorithm</option>
+        <option value="linear">Linear</option>
+        <option value="binary">Binary</option>
+        <option value="jump">Jump</option>
+    </select>
+
+    <button (click)="runAlgo()">Run</button>
 </div>
+
+<p class="notice">Click on any box in the grid to set it as target.</p>
 
 <div id="grid">
     <div class="arrVal" *ngFor="let v of _array" [class.searched]="checkActive(v)" (click)="setTarget(v)" [class.target]="v == target" [class.found]="v == foundItem">
